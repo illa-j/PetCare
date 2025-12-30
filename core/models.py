@@ -10,6 +10,10 @@ class User(AbstractUser):
 class Species(models.Model):
     name = models.CharField(max_length=200)
 
+    class Meta:
+        verbose_name_plural = "Species"
+        verbose_name = "Species"
+
 
 class Pet(models.Model):
     owners = models.ManyToManyField(
@@ -39,6 +43,9 @@ class Pet(models.Model):
 class Status(models.Model):
     name = models.CharField(max_length=150, unique=True)
 
+    class Meta:
+        verbose_name_plural = "Statuses"
+        verbose_name = "Status"
 
 class Activity(models.Model):
     title = models.CharField(max_length=150, unique=True)
@@ -65,9 +72,15 @@ class Activity(models.Model):
 
     class Meta:
         ordering = ["scheduled_date"]
+        verbose_name_plural = "Activities"
+        verbose_name = "Activity"
 
 class Priority(models.Model):
     name = models.CharField(max_length=150, unique=True)
+
+    class Meta:
+        verbose_name_plural = "Priorities"
+        verbose_name = "Priority"
 
 class HealthEvent(models.Model):
     title = models.CharField(max_length=150, unique=True)
@@ -99,3 +112,5 @@ class HealthEvent(models.Model):
 
     class Meta:
         ordering = ["scheduled_date"]
+        verbose_name_plural = "Health_Events"
+        verbose_name = "Health_Event"
