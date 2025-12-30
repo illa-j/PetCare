@@ -14,6 +14,8 @@ class Species(models.Model):
         verbose_name_plural = "Species"
         verbose_name = "Species"
 
+    def __str__(self):
+        return self.name
 
 class Pet(models.Model):
     owners = models.ManyToManyField(
@@ -39,6 +41,9 @@ class Pet(models.Model):
     )
     birth_date = models.DateField()
 
+    def __str__(self):
+        return f"{self.name} (species: {self.species.name})"
+
 
 class Status(models.Model):
     name = models.CharField(max_length=150, unique=True)
@@ -46,6 +51,10 @@ class Status(models.Model):
     class Meta:
         verbose_name_plural = "Statuses"
         verbose_name = "Status"
+
+    def __str__(self):
+        return self.name
+
 
 class Activity(models.Model):
     title = models.CharField(max_length=150, unique=True)
@@ -75,12 +84,18 @@ class Activity(models.Model):
         verbose_name_plural = "Activities"
         verbose_name = "Activity"
 
+    def __str__(self):
+        return f"{self.title} (date: {self.scheduled_date})"
+
 class Priority(models.Model):
     name = models.CharField(max_length=150, unique=True)
 
     class Meta:
         verbose_name_plural = "Priorities"
         verbose_name = "Priority"
+
+    def __str__(self):
+        return self.name
 
 class HealthEvent(models.Model):
     title = models.CharField(max_length=150, unique=True)
@@ -114,3 +129,6 @@ class HealthEvent(models.Model):
         ordering = ["scheduled_date"]
         verbose_name_plural = "Health_Events"
         verbose_name = "Health_Event"
+
+    def __str__(self):
+        return f"{self.title} (date: {self.scheduled_date})"
