@@ -48,3 +48,36 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context["segment"] = "profile"
         return context
+
+
+class PetListView(LoginRequiredMixin, ListView):
+    model = Pet
+
+    def get_context_data(
+            self, *, object_list=..., **kwargs
+    ):
+        context = super().get_context_data(**kwargs)
+        context["segment"] = "pets"
+        return context
+
+
+class ActivityListView(LoginRequiredMixin, ListView):
+    model = Activity
+
+    def get_context_data(
+            self, *, object_list=..., **kwargs
+    ):
+        context = super().get_context_data(**kwargs)
+        context["segment"] = "activities"
+        return context
+
+
+class HealthEventListView(LoginRequiredMixin, ListView):
+    model = HealthEvent
+
+    def get_context_data(
+            self, *, object_list=..., **kwargs
+    ):
+        context = super().get_context_data(**kwargs)
+        context["segment"] = "health_events"
+        return context
