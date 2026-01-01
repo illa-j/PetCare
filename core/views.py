@@ -3,8 +3,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
+from core.forms import UserForm, PetForm
 from core.models import Pet, Activity, HealthEvent
 
 
@@ -50,6 +52,11 @@ class UserDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
+class UserCreateView(LoginRequiredMixin, CreateView):
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy("core:user-list")
+
 class PetListView(LoginRequiredMixin, ListView):
     model = Pet
 
@@ -60,6 +67,11 @@ class PetListView(LoginRequiredMixin, ListView):
         context["segment"] = "pets"
         return context
 
+
+class PetCreateView(LoginRequiredMixin, CreateView):
+    model = Pet
+    form_class = PetForm
+    success_url = reverse_lazy("core:pet-list")
 
 class ActivityListView(LoginRequiredMixin, ListView):
     model = Activity
