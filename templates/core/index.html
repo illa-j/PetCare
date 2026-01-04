@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card shadow-lg border-radius-lg">
+          <div class="card-body p-5 text-center">
+            <h2 class="font-weight-bolder mb-3">Welcome to PetCare</h2>
+            <p class="text-lg mb-0 px-4">
+              PetCare is designed for families to manage pets and shared responsibilities.
+              It allows multiple family members to collaborate by creating, updating, and deleting users and pets,
+              scheduling health events and activities, and tracking their statuses.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card h-100 shadow">
+          <span class="mask bg-gradient-primary opacity-10 border-radius-lg"></span>
+          <div class="card-body p-4 position-relative">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape bg-white shadow text-center border-radius-xl me-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                <img src="/static/assets/images/user.svg" alt="users">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="text-white font-weight-bolder mb-0">{{ num_users }}</h5>
+                <span class="text-white text-sm">Users</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card h-100 shadow">
+          <span class="mask bg-gradient-success opacity-10 border-radius-lg"></span>
+          <div class="card-body p-4 position-relative">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape bg-white shadow text-center border-radius-xl me-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                <img src="/static/assets/images/pet.svg" alt="pets">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="text-white font-weight-bolder mb-0">{{ num_pets }}</h5>
+                <span class="text-white text-sm">Total Pets</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card h-100 shadow">
+          <span class="mask bg-gradient-info opacity-10 border-radius-lg"></span>
+          <div class="card-body p-4 position-relative">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape bg-white shadow text-center border-radius-xl me-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                <img src="/static/assets/images/activity.svg" alt="activities">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="text-white font-weight-bolder mb-0">{{ num_activities }}</h5>
+                <span class="text-white text-sm">Total Activities</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-12">
+        <div class="card h-100 shadow">
+          <span class="mask bg-gradient-warning opacity-10 border-radius-lg"></span>
+          <div class="card-body p-4 position-relative">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape bg-white shadow text-center border-radius-xl me-3" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                <img src="/static/assets/images/events.svg" alt="events">
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="text-white font-weight-bolder mb-0">{{ num_health_events }}</h5>
+                <span class="text-white text-sm">Total Health Events</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
