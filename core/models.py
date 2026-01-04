@@ -25,8 +25,9 @@ class Pet(models.Model):
     name = models.CharField(max_length=150, unique=True)
     species = models.ForeignKey(
         Species,
-        on_delete=models.CASCADE,
-        related_name="pets"
+        on_delete=models.SET_NULL,
+        related_name="pets",
+        null=True,
     )
     breed = models.CharField(max_length=200)
     weight = models.DecimalField(
@@ -42,7 +43,7 @@ class Pet(models.Model):
     birth_date = models.DateField()
 
     def __str__(self):
-        return f"{self.name} (species: {self.species.name})"
+        return f"{self.name} (species: {self.species})"
 
 
 class Status(models.Model):
@@ -75,8 +76,9 @@ class Activity(models.Model):
     )
     status = models.ForeignKey(
         Status,
-        on_delete=models.PROTECT,
-        related_name="activities"
+        on_delete=models.SET_NULL,
+        related_name="activities",
+        null=True,
     )
 
     class Meta:
@@ -106,8 +108,9 @@ class HealthEvent(models.Model):
     scheduled_date = models.DateField()
     priority = models.ForeignKey(
         Priority,
-        on_delete=models.PROTECT,
-        related_name="health_events"
+        on_delete=models.SET_NULL,
+        related_name="health_events",
+        null=True,
     )
     user = models.ForeignKey(
         User,
@@ -121,8 +124,9 @@ class HealthEvent(models.Model):
     )
     status = models.ForeignKey(
         Status,
-        on_delete=models.PROTECT,
-        related_name="health_events"
+        on_delete=models.SET_NULL,
+        related_name="health_events",
+        null=True,
     )
 
     class Meta:
