@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+  <main class="main-content overflow-hidden">
+    <section class="vh-80 d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-5 col-lg-6 col-md-7">
+            <div class="card shadow-lg border-0">
+              <div class="card-header bg-gradient-primary text-center py-4">
+                <h3 class="text-white mb-0">{{ object|yesno:"Update,Add" }} Activity</h3>
+              </div>
+              <div class="card-body p-5">
+                <form method="post" novalidate>
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Title</label>
+                    {{ form.title }}
+                    {% if form.title.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.title.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Description</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.description.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Scheduled Date</label>
+                    <input type="date" name="scheduled_date" class="form-control form-control-lg"
+                           value="{{ form.scheduled_date.value|date:"Y-m-d" }}" required>
+                    {% if form.scheduled_date.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.scheduled_date.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">User</label>
+                    {{ form.user }}
+                    {% if form.user.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.user.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Pet</label>
+                    {{ form.pet }}
+                    {% if form.pet.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.pet.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Status</label>
+                    {{ form.status }}
+                    {% if form.status.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.status.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <button type="submit" class="btn btn-lg bg-gradient-primary w-100 mt-4 text-white">
+                    {{ object|yesno:"Update,Add" }} Activity
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}
