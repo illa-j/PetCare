@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+  <main class="main-content overflow-hidden">
+    <section class="vh-90 d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-5 col-lg-6 col-md-7">
+            <div class="card shadow-lg border-0">
+              <div class="card-header bg-gradient-primary text-center py-4">
+                <h3 class="text-white mb-0">{{ object|yesno:"Update,Add" }} Pet</h3>
+              </div>
+              <div class="card-body p-5">
+                <form method="post" novalidate>
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Owners</label>
+                    <div class="border rounded p-3">
+                      {{ form.owners }}
+                    </div>
+                    {% if form.owners.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.owners.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Name</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.name.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Species</label>
+                    {{ form.species }}
+                    {% if form.species.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.species.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Breed</label>
+                    {{ form.breed }}
+                    {% if form.breed.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.breed.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Weight</label>
+                    {{ form.weight }}
+                    {% if form.weight.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.weight.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Height</label>
+                    {{ form.height }}
+                    {% if form.height.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.height.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-dark font-weight-bold">Birth Date</label>
+                    <input type="date" name="birth_date" class="form-control form-control-lg"
+                           value="{{ form.birth_date.value|date:"Y-m-d" }}" required>
+                    {% if form.birth_date.errors %}
+                      <span class="d-block mt-1 text-danger text-sm">{{ form.birth_date.errors.0 }}</span>
+                    {% endif %}
+                  </div>
+                  <button type="submit" class="btn btn-lg bg-gradient-primary w-100 mt-4 text-white">
+                    {{ object|yesno:"Update,Add" }} Pet
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

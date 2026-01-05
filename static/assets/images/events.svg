@@ -1,0 +1,18 @@
+<svg width="24px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 456.02 449.5">
+    <defs>
+        <style>.health-icon{fill:none;stroke:#000;stroke-miterlimit:10;stroke-width:26px;}</style>
+    </defs>
+    <path class="health-icon"
+          d="M895,555l-51.32,86.6C807.49,702.73,851.52,780,922.53,780h102.64c71,0,115-77.27,78.84-138.36L1052.69,555C1017.19,495.14,930.51,495.14,895,555Z"
+          transform="translate(-744.37 -343.5)"/>
+    <ellipse class="health-icon" cx="799.5" cy="526.5" rx="40.5" ry="56.5"
+             transform="translate(-863.83 -85.16) rotate(-17.1)"/>
+    <ellipse class="health-icon" cx="907.67" cy="418.04" rx="40.5" ry="56.5"
+             transform="translate(-827.16 -58.15) rotate(-17.1)"/>
+    <ellipse class="health-icon" cx="1145.25" cy="526.27" rx="56.5" ry="40.5"
+             transform="translate(-438.85 1122.66) rotate(-72.9)"/>
+    <ellipse class="health-icon" cx="1048.08" cy="411.82" rx="56.5" ry="40.5"
+             transform="translate(-398.05 948.99) rotate(-72.9)"/>
+    <polygon
+            points="297.63 293.79 255.34 293.79 255.34 251.5 203.1 251.5 203.1 293.79 161.63 293.79 161.63 346.03 203.1 346.03 203.1 387.5 255.34 387.5 255.34 346.03 297.63 346.03 297.63 293.79"/>
+</svg>

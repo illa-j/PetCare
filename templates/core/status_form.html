@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <main class="main-content overflow-hidden">
+    <section class="vh-90 d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-lg-5 col-md-6">
+            <div class="card shadow-lg border-0">
+              <div class="card-header bg-gradient-primary text-center py-4">
+                <h3 class="text-white mb-0">{{ object|yesno:"Update,Add" }} Status</h3>
+              </div>
+              <div class="card-body p-5">
+                <form method="post" novalidate>
+                  {% csrf_token %}
+                  {{ form }}
+                  <button type="submit" class="btn btn-lg bg-gradient-primary w-100 mt-4 text-white">
+                    {{ object|yesno:"Update,Add" }} Status
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

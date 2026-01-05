@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm">
+          <div class="card-header pb-0 px-4 pt-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="mb-0 font-weight-bolder">Users List</h6>
+              <div class="d-flex align-items-center gap-3">
+                <span class="text-sm text-secondary">{{ user_list|length }} total users</span>
+                <a href="{% url "core:user-create" %}" class="btn btn-primary btn-sm mb-0">
+                  <i class="fas fa-plus me-1"></i>Add User
+                </a>
+              </div>
+            </div>
+            <form method="get" action="">
+              <div class="input-group mb-3 shadow-sm">
+                <span class="input-group-text bg-white border-end-0">
+                  <i class="fas fa-search text-primary" aria-hidden="true"></i>
+                </span>
+                <input type="text"
+                       class="form-control border-start-0 border-end-0 ps-0"
+                       name="username"
+                       placeholder="Search users..."
+                       value="{{ search_form.username.value }}"
+                       aria-label="Search users">
+                <button class="btn btn-primary h-100 mb-0 ms-1 rounded-1" type="submit">
+                  <i class="fas fa-arrow-right me-2"></i>Search
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">User</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Full Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pets</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Joined
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in user_list %}
+                  <tr class="border-bottom">
+                    <td>
+                      <div class="d-flex px-2 py-1 align-items-center">
+                        <div
+                            class="avatar avatar-sm me-3 bg-gradient-primary rounded-circle d-flex align-items-center justify-content-center">
+                          <span class="text-white text-xs font-weight-bold">{{ user.username|first|upper }}</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm font-weight-bold">{{ user.username }}</h6>
+                          <p class="text-xs text-secondary mb-0">{{ user.email }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex flex-column justify-content-center">
+                        <p class="text-sm mb-0">{{ user.first_name }} {{ user.last_name }}</p>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center">
+                      {% if user.pets.count > 0 %}
+                        <span class="badge badge-sm bg-gradient-success">{{ user.pets.count }}</span>
+                      {% else %}
+                        <span class="text-xs text-secondary">None</span>
+                      {% endif %}
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-sm text-secondary">{{ user.date_joined|date:"M d, Y" }}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <a href="{% url 'core:user-update' pk=user.id %}" class="btn btn-link text-primary text-sm mb-0 px-2" title="Edit user">
+                        <i class="fas fa-pencil-alt me-1"></i>Edit
+                      </a>
+                      <a href="{% url 'core:user-detail' pk=user.id %}" class="btn btn-link text-info text-sm mb-0 px-2" title="View profile">
+                        <i class="fas fa-eye me-1"></i>View
+                      </a>
+                      <form method="post" action="{% url 'core:user-delete' pk=user.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link text-danger text-sm mb-0 px-2"
+                                title="Delete health event">
+                          <i class="fas fa-trash me-1"></i>Delete
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="5" class="text-center py-5">
+                      <div class="text-secondary">
+                        <i class="fas fa-users fa-3x mb-3 opacity-5"></i>
+                        <p class="text-sm mb-0">No users found</p>
+                      </div>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            {% include "includes/pagination.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

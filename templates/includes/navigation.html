@@ -1,0 +1,41 @@
+<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-sm border-radius-xl" id="navbarBlur"
+     navbar-scroll="true">
+  <div class="container-fluid py-0 px-3">
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 justify-content-end" id="navbar">
+      <ul class="navbar-nav justify-content-end align-items-center">
+        <li class="nav-item d-flex align-items-center ">
+          {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post" class="d-inline-block w-auto m-0">
+              {% csrf_token %}
+              <button class="btn btn-link nav-link border-0 text-decoration-none d-flex align-items-center justify-content-center p-1 px-2 rounded-pill mb-0"
+                      type="submit"
+                      style="transition: all 0.3s ease;">
+                <div class="icon icon-shape icon-xs shadow-sm border-radius-md bg-gradient-danger text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fas fa-sign-out-alt text-white" style="font-size: 0.75rem;"></i>
+                </div>
+                <span class="nav-link-text text-danger fw-bold ms-1" style="font-size: 0.875rem;">Logout</span>
+              </button>
+            </form>
+          {% else %}
+            <a href="{% url 'login' %}"
+               class="btn btn-link nav-link text-decoration-none d-flex align-items-center justify-content-center p-1 px-2 rounded-pill mb-0">
+              <div class="icon icon-shape icon-xs shadow-sm border-radius-md bg-gradient-primary text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa fa-user text-white" style="font-size: 0.75rem;"></i>
+              </div>
+              <span class="d-sm-inline d-none fw-bold text-primary" style="font-size: 0.875rem;">Login</span>
+            </a>
+          {% endif %}
+        </li>
+        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link text-body p-2 rounded" id="iconNavbarSidenav">
+            <div class="sidenav-toggler-inner">
+              <i class="sidenav-toggler-line bg-dark"></i>
+              <i class="sidenav-toggler-line bg-dark"></i>
+              <i class="sidenav-toggler-line bg-dark"></i>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

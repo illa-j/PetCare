@@ -1,0 +1,54 @@
+{% block extrastyle %}
+    <link rel="stylesheet" type="text/css" href="/static/assets/css/forms.css">
+{% endblock %}
+
+{% if is_paginated %}
+    <div class="card shadow-sm border-0">
+        <div class="card-footer bg-white px-4 py-2 d-flex flex-column align-items-center justify-content-center">
+            <nav aria-label="Page navigation" class="mb-2">
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                        {% if page_obj.has_previous %}
+                            <a class="page-link rounded-start" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">‹</span>
+                            </a>
+                        {% else %}
+                            <span class="page-link rounded-start text-muted">
+                                <span aria-hidden="true">‹</span>
+                            </span>
+                        {% endif %}
+                    </li>
+                    {% if pagination_required %}
+                        {% for i in page_range %}
+                            <li class="page-item {% if i == page_obj.number %}active{% endif %}">
+                                {% if i == page_obj.number %}
+                                    <span class="page-link bg-primary border-primary">{{ i }}</span>
+                                {% else %}
+                                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+                    <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                        {% if page_obj.has_next %}
+                            <a class="page-link rounded-end" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">›</span>
+                            </a>
+                        {% else %}
+                            <span class="page-link rounded-end text-muted">
+                                 <span aria-hidden="true">›</span>
+                            </span>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+            <div class="text-muted small">
+                <strong>Page {{ page_obj.number }}</strong> of <strong>{{ paginator.num_pages }}</strong>
+                <span class="d-none d-md-inline">
+                    ({{ paginator.count }} total items)
+                </span>
+            </div>
+        </div>
+    </div>
+{% endif %}
