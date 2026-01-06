@@ -7,7 +7,7 @@ This project is designed for families to manage pets and shared responsibilities
 -   Python
 -   pip 
 -   Virtual environment tool 
--   SQLite
+-   SQLite or PostgresSql
 ### Installing
 
 1.  Clone the repository
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 4.  Set up environment variables
 ```
-cp .env.example .env
+cp .env.sample .env
 # Edit .env with your configuration
 ```
 5.  Run migrations
